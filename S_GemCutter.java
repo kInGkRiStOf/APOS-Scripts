@@ -1,3 +1,4 @@
+//edited by kRiStOf: added crushed gemstone dropping after cutting
 import java.util.Locale;
 
 public final class S_GemCutter extends Script {
@@ -131,6 +132,7 @@ public final class S_GemCutter extends Script {
 			if (gem != -1) break;
 		}
 		int chisel = getInventoryIndex(ID_CHISEL);
+		int crushedGemstone = getInventoryIndex(915);
 		if (chisel == -1) {
 			System.out.println("ERROR: No chisel!");
 			stopScript();
@@ -139,6 +141,10 @@ public final class S_GemCutter extends Script {
 		}
 		if (gem != -1) {
 			useItemWithItem(chisel, gem);
+			return random(600, 800);
+		}
+		if (crushedGemstone != -1) { //you forgot about cutting mass junk gems from shilo! gotta get rid of those crushed gems too
+			dropItem(crushedGemstone);
 			return random(600, 800);
 		}
 		int[] banker = getNpcByIdNotTalk(BANKERS);
